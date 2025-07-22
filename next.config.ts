@@ -5,4 +5,15 @@ const nextConfig: NextConfig = {
   devIndicators: false
 };
 
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: "/",
+        destination: "/dashboard",
+      },
+    ]
+  }
+}
+
 export default nextConfig;
