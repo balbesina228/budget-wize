@@ -22,7 +22,7 @@ export default function Dashboard() {
     { id: 158, name: "Перепродал жвачку Турбо", value: 85 },
     { id: 159, name: "Победил невидимого несуществующего дракона", value: 100 },
   ];
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#ff1b1bff"];
+  const COLORS = ["blue", "green", "yellow", "orange", "red"];
 
   return (
     <Container className="flex-auto">
@@ -44,7 +44,7 @@ export default function Dashboard() {
                 {mockData1.map((entry, index) => (
                   <Cell
                     key={`cell-${entry.name}`}
-                    fill={COLORS[index % COLORS.length]}
+                    fill={`var(--chart-${index + 1})`}
                   />
                 ))}
               </Pie>
@@ -68,7 +68,7 @@ export default function Dashboard() {
                 {mockData2.map((entry, index) => (
                   <Cell
                     key={`cell-${entry.name}`}
-                    fill={COLORS[index % COLORS.length]}
+                    fill={`var(--chart-${index + 1})`}
                   />
                 ))}
               </Pie>
@@ -80,9 +80,12 @@ export default function Dashboard() {
           <span>
             Ваши жесткие расходы за <span>МЕСЯЦ</span>
           </span>
-          {mockData1.map((expense) => (
+          {mockData1.map((expense, index) => (
             <div key={expense.id} className="flex justify-between">
-              <span>{expense.name}</span>
+              <div className="flex">
+                <div className={`text-(--chart-${index + 1}) mr-1`}>■</div>
+                <span>{expense.name}</span>
+              </div>
               <span>{expense.value}</span>
             </div>
           ))}
@@ -91,9 +94,12 @@ export default function Dashboard() {
           <span>
             Ваши жесткие доходы за <span>МЕСЯЦ</span>
           </span>
-          {mockData2.map((expense) => (
+          {mockData2.map((expense, index) => (
             <div key={expense.id} className="flex justify-between">
-              <span>{expense.name}</span>
+              <div className="flex">
+                <div className={`text-(--chart-${index + 1}) mr-1`}>■</div>
+                <span>{expense.name}</span>
+              </div>
               <span>{expense.value}</span>
             </div>
           ))}
