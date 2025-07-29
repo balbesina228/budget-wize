@@ -1,13 +1,18 @@
 "use client";
+import { useAuth } from "@/shared/model/auth-store";
 import { Container } from "@/shared/ui";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
 export default function Dashboard() {
-  /*
-   * можно сделать основу для страницы как отдельный компонент
-   * расходы/доходы в отдельный компонент
-   * сделать дашборд слева по таблицам справа
-   */
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (!user) {
+      redirect('/login');}
+  }, [user])
+
   const mockData1 = [
     { id: 150, name: "Сыр", value: 100 },
     { id: 151, name: "Хлеб", value: 50 },
